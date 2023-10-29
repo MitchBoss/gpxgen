@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#app {
+    margin: auto;
+    width: 300px;
+    padding: 20px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+#console {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin-top: 10px;
+    height: 150px; /* Increased height */
+    overflow-y: auto;
+    white-space: pre-wrap;
+    font-family: monospace; /* Makes it easier to read console output */
+}

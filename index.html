@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps to GPX Converter</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="app">
+        <label for="startLocation">Start Location:</label>
+        <input type="text" id="startLocation" placeholder="Enter start location" />
+
+        <label for="endLocation">End Location:</label>
+        <input type="text" id="endLocation" placeholder="Enter end location" />
+
+        <div>
+            <input type="checkbox" id="sameLocation"> End is the same as start
+            <label for="sameLocation"></label>
+        </div>
+
+        <button id="validateButton">Validate</button>
+        <button id="saveButton" disabled>Save GPX</button>
+
+        <div id="console"></div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
