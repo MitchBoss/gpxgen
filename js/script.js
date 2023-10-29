@@ -1,5 +1,14 @@
 const debugMode = false; // Set to true to enable debug mode
 
+// Queue to manage messages and ensure they are typed one after another
+let messageQueue = [];
+let isTyping = false;
+
+// Create the cursor element
+const cursorSpan = document.createElement('span');
+
+// cursorSpan.className = 'blinking-cursor'; Still don't know exactly what this was doing.
+
 document.addEventListener('DOMContentLoaded', function () {
     const startLocation = document.getElementById('startLocation');
     const endLocation = document.getElementById('endLocation');
@@ -7,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const validateButton = document.getElementById('validateButton');
     const saveButton = document.getElementById('saveButton');
     const consoleDiv = document.getElementById('console');
+
+    // Display a welcome message when the page loads
+    logToConsole("Welcome to the Google Maps to GPX Converter.");
 
     sameLocationCheckbox.addEventListener('change', function () {
         endLocation.disabled = this.checked;
@@ -24,6 +36,11 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        if (!sameLocationCheckbox.checked && !endAddress) {
+            logToConsole("No end location specified.");
+            return;
+        }
+
         logToConsole("Validating addresses...");
 
         getCoordinates(startAddress).then(startCoords => {
@@ -31,9 +48,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (sameLocationCheckbox.checked || startAddress === endAddress) {
                 saveButton.disabled = false;
                 logToConsole("End location is the same as the start location. Ready to save GPX.");
-            } else if (!endAddress) {
-                logToConsole("No end location specified.");
-                saveButton.disabled = true;
             } else {
                 getCoordinates(endAddress).then(endCoords => {
                     logToConsole(`End location is valid: ${endAddress}`);
@@ -70,12 +84,61 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function logToConsole(message) {
-        const messageElement = document.createElement('div');
-        messageElement.textContent += message + "\n\n"; // Ensure each message is on a new line
-        messageElement.className = 'console-message';
-        consoleDiv.appendChild(messageElement);
-        consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        messageQueue.push(message);
+        if (!isTyping) {
+            processQueue();
+        }
     }
+    document.addEventListener('DOMContentLoaded', function () {
+        // ...
+        // Do not append the cursor to the console here
+        // ...
+    });
+    
+    function processQueue() {
+        if (messageQueue.length > 0 && !isTyping) {
+            isTyping = true;
+            const message = messageQueue.shift();
+            const messageElement = document.createElement('div');
+            messageElement.className = 'console-message';
+            consoleDiv.appendChild(messageElement);
+            
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < message.length) {
+                    messageElement.textContent = message.substring(0, i+1) + '?|';
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    messageElement.textContent = message; // Remove the '|' at the end
+                    
+                    // Append the blinking cursor on a new line
+                    const newLine = document.createElement('div');
+                    newLine.appendChild(cursorSpan);
+                    consoleDiv.appendChild(newLine);
+                    cursorSpan.className = 'blinking-cursor'; 
+                    isTyping = false;
+                    
+                    if (messageQueue.length > 0) {
+                        setTimeout(processQueue, 500);
+                    }
+                }
+            }, 50); 
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
     
 
     function getCoordinates(address) {
