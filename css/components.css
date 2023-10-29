@@ -1,0 +1,42 @@
+/* Style the input fields and buttons */
+input[type="text"], button {
+    /* ...existing styles... */
+}
+
+/* Style the input fields */
+input[type="text"] {
+    /* ...existing styles... */
+}
+
+/* Style the buttons */
+button {
+    /* ...existing styles... */
+}
+
+/* Style the disabled button */
+button:disabled {
+    /* ...existing styles... */
+}
+
+/* Style the console output */
+#console {
+    /* ...existing styles... */
+}
+
+/* Style the settings button */
+#settingsButton {
+    /* ...existing styles... */
+}
+
+/* New styles for the debug switch and width slider */
+.switch {
+    /* ...style your switch here... */
+}
+
+.slider-container {
+    /* ...style your slider container here... */
+}
+
+.range-slider {
+    /* ...style your range slider here... */
+}

@@ -1,0 +1,45 @@
+/* Base styles: Set default font family and colors */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F0F4F8;
+    color: #333;
+}
+
+/* Layout styles: Style the app container */
+#app {
+    margin: auto;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+/* Layout styles: Style for the settings menu */
+#settingsMenu {
+    margin: auto;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+/* Layout styles: Flip effect for app and settingsMenu */
+#app, #settingsMenu {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+/* Layout styles: Style for the credits section */
+#creditsSection {
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #ddd; /* Separation line */
+    display: none; /* Start hidden */
+}

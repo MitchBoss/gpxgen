@@ -13,36 +13,32 @@ body {
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
+    transition: opacity 0.5s, visibility 0.5s;
 }
 
-/* Add box-sizing to include padding and border in width calculation */
-input[type="text"],
-button {
+/* Style the input fields and buttons */
+input[type="text"], button {
     box-sizing: border-box;
+    width: 100%; /* Full width of the container */
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 /* Style the input fields */
 input[type="text"] {
-    width: 100%; /* Full width of the container */
-    padding: 10px;
-    margin: 10px 0;
     border: 1px solid #ddd;
-    border-radius: 5px;
 }
 
 /* Style the buttons */
 button {
-    width: 100%; /* Full width of the container */
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
+    border: 1px solid #ddd;
     color: #fff;
     background-color: #4DB6AC;
-    cursor: pointer;
 }
 
-
+/* Style the disabled button */
 button:disabled {
     background-color: #ddd;
     cursor: not-allowed;
@@ -58,4 +54,88 @@ button:disabled {
     overflow-y: auto;
     white-space: pre-wrap;
     font-family: monospace;
+}
+
+/* Style the settings button */
+#settingsButton {
+    width: 340px;
+    padding: 4px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #f56e94;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Style for the settings menu */
+#settingsMenu {
+    margin: auto;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+/* Fade-out and fade-in animations */
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        visibility: hidden;
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Existing styles... */
+
+/* New styles for the debug switch and width slider */
+.switch {
+    /* Style your switch here */
+}
+
+.slider-container {
+    /* Style your slider container here */
+}
+
+.range-slider {
+    /* Style your range slider here */
+}
+
+/* Flip effect */
+#app, #settingsMenu {
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+}
+
+
+/* Style for the credits section */
+#creditsSection {
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #ddd; /* Separation line */
+    display: none; /* Start hidden */
 }
