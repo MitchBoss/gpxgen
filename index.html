@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Maps to GPX Converter</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/base-layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script>
+    <link rel="stylesheet" href="https://openlayers.org/en/v6.5.0/css/ol.css" type="text/css">
+    <script src="https://openlayers.org/en/v6.5.0/build/ol.js"></script>
 </head>
 <body>
+    
+    <!-- Settings Button -->
+    <div style="text-align:center; margin-bottom:10px;">
+        <button id="settingsButton">&#9881; Settings</button>
+    </div>
+    
+    <!-- App Container -->
     <div id="app">
         <h1>Google Maps to GPX Converter</h1>
         <div class="input-group">
@@ -23,8 +37,34 @@
         </div>
         <button id="validateButton">Validate</button>
         <button id="saveButton" disabled>Save GPX</button>
+        <div id="map" class="map"></div>
         <div id="console"></div>
     </div>
-    <script src="js/script.js"></script>
+    
+    <!-- Settings Menu (initially hidden) -->
+    <div id="settingsMenu">
+        <label class="switch">
+            <input type="checkbox" id="debugSwitch">
+            <span class="slider round"></span>
+        </label>
+        <label for="debugSwitch">Debug Mode</label>
+        
+        <div class="slider-container">
+            <label for="widthSlider" class="slider-label">Adjust Width:</label>
+            <input type="range" id="widthSlider" min="300" max="600" value="300" class="range-slider">
+        </div>
+        
+        <button id="creditsButton">Credits</button>
+    </div>
+    
+    <!-- Credits Section (initially hidden) -->
+    <div id="creditsSection" style="display:none;">
+        <p>Made by Mitch</p>
+        <p><a href="https://github.com/MitchBoss" target="_blank">MitchBoss on GitHub</a></p>
+        <p>Wouldn't be possible without ChatGPT</p>
+    </div>
+
+
+    <script type="module" src="js/script.js"></script>
 </body>
 </html>

@@ -1,0 +1,16 @@
+/* Fade-out and fade-in animations */
+.fade-out {
+    /* ...existing styles... */
+}
+
+.fade-in {
+    /* ...existing styles... */
+}
+
+@keyframes fadeOut {
+    /* ...existing styles... */
+}
+
+@keyframes fadeIn {
+    /* ...existing styles... */
+}
