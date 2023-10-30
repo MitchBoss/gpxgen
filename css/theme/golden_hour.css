@@ -1,0 +1,14 @@
+
+/* Golden Hour Theme */
+body {
+    background-color: #f39c12;
+    color: #2c3e50;
+}
+
+a, button {
+    color: #e74c3c;
+}
+
+.secondary-bg {
+    background-color: #d35400;
+}

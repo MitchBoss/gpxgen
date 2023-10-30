@@ -1,0 +1,14 @@
+
+/* Space Odyssey Theme */
+body {
+    background-color: #34495e;
+    color: #333333;
+}
+
+a, button {
+    color: #e74c3c;
+}
+
+.secondary-bg {
+    background-color: #2980b9;
+}

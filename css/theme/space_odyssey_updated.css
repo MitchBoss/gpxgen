@@ -1,0 +1,18 @@
+
+/* Space Odyssey Updated Theme */
+body {
+    background-color: #34495e;
+    color: #ecf0f1;
+}
+a, button {
+    color: #e74c3c;
+    background-color: #2980b9;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6, .sidebar {
+    background-color: #2980b9;
+    padding: 8px 12px;
+    border-radius: 4px;
+}

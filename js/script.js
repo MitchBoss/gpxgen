@@ -55,6 +55,56 @@ document.getElementById('settingsButton').addEventListener('click', function() {
 
 // Existing scripts...
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Reference to the theme selector dropdown
+    const themeSelector = document.getElementById('themeSelector');
+    
+    // Listen for changes to the theme selector dropdown
+    themeSelector.addEventListener('change', function(event) {
+        const selectedTheme = event.target.value;
+        applyTheme(selectedTheme);
+    });
+
+    if (debugMode) {
+        // Clear local storage and avoid setting any theme if debugMode is true
+        localStorage.clear();
+    } else {
+        // Apply theme from local storage if it exists
+        const savedTheme = localStorage.getItem('selectedTheme');
+        if (savedTheme) {
+            themeSelector.value = savedTheme;
+            applyTheme(savedTheme);
+        }
+    }
+});
+
+// Function to apply the selected theme
+function applyTheme(theme) {
+    // Reference to the theme stylesheet link in the document head
+    let themeLink = document.getElementById('dynamicThemeStyle');
+    
+    if (!themeLink) {
+        themeLink = document.createElement('link');
+        themeLink.rel = 'stylesheet';
+        themeLink.id = 'dynamicThemeStyle';
+        document.head.appendChild(themeLink);
+    }
+    
+    // Set the href of the themeLink to the appropriate CSS file based on the selected theme
+    if (theme !== 'select_themet') {
+        themeLink.href = `/css/theme/${theme}.css`;
+        if (!debugMode) {
+            localStorage.setItem('selectedTheme', theme); // Save the theme preference to local storage
+        }
+    } else {
+        themeLink.href = ''; // Reset to default if "Select Theme" is chosen
+        if (!debugMode) {
+            localStorage.removeItem('selectedTheme');
+        }
+    }
+}
+
+
 // Event listener for the settings button
 document.getElementById('settingsButton').addEventListener('click', function() {
     // Toggle the visibility of the settings menu

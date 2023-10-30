@@ -1,0 +1,27 @@
+
+:root {
+    --themed-primary-color: #003349;
+    --themed-secondary-color: #106b88;
+    --themed-tertiary-color: #64cdc6;
+    --themed-quaternary-color: #dbfffb;
+}
+
+/* Overriding styles from base-layout.css */
+body {
+    background-color: var(--themed-primary-color);
+    color: var(--themed-quaternary-color);
+}
+
+#app {
+    background-color: var(--themed-tertiary-color);
+}
+
+/* Overriding styles from components.css */
+input[type="text"] {
+    border: 1px solid var(--themed-secondary-color);
+}
+
+button {
+    background-color: var(--themed-secondary-color);
+    color: var(--themed-quaternary-color);
+}
