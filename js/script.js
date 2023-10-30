@@ -1,30 +1,62 @@
+
+
+
 // Declare consoleDiv at the top level to make it globally accessible
 const consoleDiv = document.getElementById('console');
 
-// Move logToConsole function to top-level so it's accessible globally
+// Using querySelectorAll to get all elements with the class "consoleDivs"
+const consoleDivs = document.querySelectorAll('.consoleDivs');
+
 function logToConsole(message) {
+    const consoleDivs = document.querySelectorAll('.consoleDivs');
     const messageElement = document.createElement('div');
-    messageElement.textContent += message + "\n\n"; // Ensure each message is on a new line
+    messageElement.textContent += message + "\n\n";
     messageElement.className = 'console-message';
-    consoleDiv.appendChild(messageElement);
-    consoleDiv.scrollTop = consoleDiv.scrollHeight;
+    
+    consoleDivs.forEach(consoleDiv => {
+        consoleDiv.appendChild(messageElement.cloneNode(true));
+        consoleDiv.scrollTop = consoleDiv.scrollHeight;
+    });
 }
+
+
 
 // ... (rest of the provided code remains unchanged) ...
 
 
 
-let debugMode = false; // Set to true to enable debug mode
+let debugMode = localStorage.getItem('debugMode') === 'true'; // Load from localStorage, default to false if not set
 
 // Function to toggle debugMode and print its status
 function toggleDebugMode() {
     debugMode = !debugMode;
+    localStorage.setItem('debugMode', debugMode); // Save to localStorage
+    debugSwitch.checked = debugMode;  // Update the checkbox state
     logToConsole(`Debug mode is now: ${debugMode ? "ON" : "OFF"}`);
 }
 
 // Add an event listener to the debug switch (assuming it's a checkbox)
 const debugSwitch = document.getElementById('debugSwitch');
 debugSwitch.addEventListener('change', toggleDebugMode);
+
+// Initialize the state of the checkbox based on debugMode's value
+debugSwitch.checked = debugMode;
+
+const widthSlider = document.getElementById('widthSlider');
+const app = document.getElementById('app');
+
+// Load the saved width value from localStorage, default to 300 if not set
+let savedWidth = localStorage.getItem('appWidth') || '300';
+app.style.width = savedWidth + 'px';
+widthSlider.value = savedWidth; // Initialize the slider value
+
+// Event listener for the width slider
+widthSlider.addEventListener('input', function() {
+    app.style.width = this.value + 'px';
+    localStorage.setItem('appWidth', this.value); // Save the current width to localStorage
+});
+
+
 
 document.getElementById('settingsButton').addEventListener('click', function() {
     var app = document.getElementById('app');
@@ -93,7 +125,7 @@ function applyTheme(theme) {
     }
     // Set the href of the themeLink to the appropriate CSS file based on the selected theme
     if (theme !== 'select_theme') {  // Corrected the typo here
-        themeLink.href = `/css/theme/${theme}.css`;
+        themeLink.href = `css/theme/${theme}.css`;
         if (debugMode) {
             logToConsole(`Theme changed to: ${theme}`);
             logToConsole(`Theme href: ${themeLink.href}`);
