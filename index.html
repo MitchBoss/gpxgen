@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/utilities.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css" type="text/css">
-    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script>
+    
+    <!-- OpenLayers stylesheets for maps functionality -->
     <link rel="stylesheet" href="https://openlayers.org/en/v6.5.0/css/ol.css" type="text/css">
     <script src="https://openlayers.org/en/v6.5.0/build/ol.js"></script>
 </head>
@@ -42,7 +42,8 @@
     </div>
     
     <!-- Settings Menu (initially hidden) -->
-    <div id="settingsMenu">
+    <div id="settingsMenu" class="settings-menu">
+        <!-- Existing settings controls -->
         <label class="switch">
             <input type="checkbox" id="debugSwitch">
             <span class="slider round"></span>
@@ -55,6 +56,22 @@
         </div>
         
         <button id="creditsButton">Credits</button>
+        
+        <!-- Theme Switcher Dropdown -->
+        <div class="input-group theme-switcher-dropdown">
+            <label for="themeSelector">Theme:</label>
+            <select id="themeSelector" name="themeSelector">
+                <option value="select_themet">Select Theme</option>
+                <option value="midnight_contrast">Midnight Contrast</option>
+                <option value="golden_hour">Golden Hour</option>
+                <option value="tropical_burst">Tropical Burst</option>
+                <option value="classic_elegance">Classic Elegance</option>
+                <option value="space_odyssey">Space Odyssey</option>
+                <option value="desert_mirage">Desert Mirage</option>
+                <option value="winter_chill">Winter Chill</option>
+                <option value="autumn_breeze">Autumn Breeze</option>
+            </select>
+        </div>
     </div>
     
     <!-- Credits Section (initially hidden) -->
@@ -63,7 +80,6 @@
         <p><a href="https://github.com/MitchBoss" target="_blank">MitchBoss on GitHub</a></p>
         <p>Wouldn't be possible without ChatGPT</p>
     </div>
-
 
     <script src="js/script.js"></script>
 </body>

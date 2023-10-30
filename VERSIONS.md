@@ -3,9 +3,6 @@
 This document provides a log of changes for each release version of the project.
 
 ## [0.5.0] - 2023-10-30
-### Added
-- Modular JavaScript structure implemented for better code management.
-- Technical documentation created for future development and maintenance.
 
 ### Changed
 - CSS refactored into modular files for improved scalability and maintainability.
@@ -28,12 +25,12 @@ This document provides a log of changes for each release version of the project.
 ### Changed
 - Enhanced settings menu with toggle functionality.
 
-## [0.2.0] - 2023-06-20
+## [0.2.0] - 2023-06-27
 ### Added
 - Preliminary settings menu implemented.
 - Basic map functionality with OpenLayers integration.
 
-## [0.1.0] - 2023-05-10
+## [0.1.0] - 2023-10-27
 ### Added
 - Initial project structure with core map functionality.
 - Basic styling and layout setup.
