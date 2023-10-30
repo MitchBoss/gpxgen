@@ -1,28 +1,31 @@
+// Declare consoleDiv at the top level to make it globally accessible
+const consoleDiv = document.getElementById('console');
 
-// Initialize the OpenLayers map
-const map = new ol.Map({
-    target: 'mapContainer',
-    layers: [
-        new ol.layer.Tile({
-            source: new ol.source.OSM()
-        })
-    ],
-    view: new ol.View({
-        center: ol.proj.fromLonLat([0, 0]), // Default to center of the world
-        zoom: 2
-    })
-});
-
-// Update the map to show the selected location
-function updateMapWithLocation(lat, lon) {
-    const coordinates = ol.proj.fromLonLat([lon, lat]);
-    map.getView().setCenter(coordinates);
-    map.getView().setZoom(15);
-    
-    // Slide the map container in from the right
-    document.getElementById('mapContainer').style.right = '0';
+// Move logToConsole function to top-level so it's accessible globally
+function logToConsole(message) {
+    const messageElement = document.createElement('div');
+    messageElement.textContent += message + "\n\n"; // Ensure each message is on a new line
+    messageElement.className = 'console-message';
+    consoleDiv.appendChild(messageElement);
+    consoleDiv.scrollTop = consoleDiv.scrollHeight;
 }
-const debugMode = false; // Set to true to enable debug mode
+
+// ... (rest of the provided code remains unchanged) ...
+
+
+
+let debugMode = false; // Set to true to enable debug mode
+
+// Function to toggle debugMode and print its status
+function toggleDebugMode() {
+    debugMode = !debugMode;
+    logToConsole(`Debug mode is now: ${debugMode ? "ON" : "OFF"}`);
+}
+
+// Add an event listener to the debug switch (assuming it's a checkbox)
+const debugSwitch = document.getElementById('debugSwitch');
+debugSwitch.addEventListener('change', toggleDebugMode);
+
 document.getElementById('settingsButton').addEventListener('click', function() {
     var app = document.getElementById('app');
     var settingsMenu = document.getElementById('settingsMenu');
@@ -82,27 +85,29 @@ document.addEventListener('DOMContentLoaded', function() {
 function applyTheme(theme) {
     // Reference to the theme stylesheet link in the document head
     let themeLink = document.getElementById('dynamicThemeStyle');
-    
     if (!themeLink) {
         themeLink = document.createElement('link');
         themeLink.rel = 'stylesheet';
         themeLink.id = 'dynamicThemeStyle';
         document.head.appendChild(themeLink);
     }
-    
     // Set the href of the themeLink to the appropriate CSS file based on the selected theme
-    if (theme !== 'select_themet') {
+    if (theme !== 'select_theme') {  // Corrected the typo here
         themeLink.href = `/css/theme/${theme}.css`;
-        if (!debugMode) {
-            localStorage.setItem('selectedTheme', theme); // Save the theme preference to local storage
+        if (debugMode) {
+            logToConsole(`Theme changed to: ${theme}`);
+            logToConsole(`Theme href: ${themeLink.href}`);
         }
+        localStorage.setItem('selectedTheme', theme); // Save the theme preference to local storage
     } else {
         themeLink.href = ''; // Reset to default if "Select Theme" is chosen
-        if (!debugMode) {
-            localStorage.removeItem('selectedTheme');
+        if (debugMode) {
+            logToConsole('Theme reset to default');
         }
+        localStorage.removeItem('selectedTheme');
     }
 }
+
 
 
 // Event listener for the settings button
