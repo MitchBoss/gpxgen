@@ -51,10 +51,19 @@ app.style.width = savedWidth + 'px';
 widthSlider.value = savedWidth; // Initialize the slider value
 
 // Event listener for the width slider
-widthSlider.addEventListener('input', function() {
+document.getElementById('widthSlider').addEventListener('input', function() {
+    var app = document.getElementById('app');
     app.style.width = this.value + 'px';
-    localStorage.setItem('appWidth', this.value); // Save the current width to localStorage
+
+    // Save the current width to localStorage
+    localStorage.setItem('appWidth', this.value);
+
+    // Check if debugMode is on, and log the width change to the console
+    if (debugMode) {
+        logToConsole(`Width changed to: ${this.value}px`);
+    }
 });
+
 
 
 
